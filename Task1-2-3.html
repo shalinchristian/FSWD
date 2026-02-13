@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="/angular-1.8.2/angular.js"></script>
+    <script>
+      angular.element(document.getElementById("app2")).ready(function () {
+        angular.bootstrap(document.getElementById("app2"));
+      });
+      angular.element(document.getElementById("app3")).ready(function () {
+        angular.bootstrap(document.getElementById("app3"));
+      });
+      angular.element(document.getElementById("app4")).ready(function () {
+        angular.bootstrap(document.getElementById("app4"));
+      });
+    </script>
+  </head>
+  <body>
+    <section ng-app>
+      <h1>Application 1</h1>
+      Res : {{14*45}}
+    </section>
+    <hr />
+    <div id="app2">
+      <h1>Application 2</h1>
+      Res : {{14*45}}
+    </div>
+    <hr />
+    <div id="app3">
+      <h1>Two way Binding Method</h1>
+      <form>
+        Name:
+        <input type="text" ng-model="name" placeholder="Enter Name" />
+      </form>
+      Welcome, <span ng-bind="name"></span>
+    </div>
+    <hr />
+    <div id="app4">
+      <h1>Two Operator</h1>
+      <form>
+        Value 1:
+        <input type="number" ng-model="op1" placeholder="Operator 1" />
+        <br />
+        Value 2:
+        <input type="number" ng-model="op2" placeholder="Operator 2" />
+      </form>
+      here is the math: <span ng-bind="op1*op2"></span><br>
+      here is the math(Using exp) : {{op1*op2}}
+      <hr />
+    </div>
+  </body>
+</html>

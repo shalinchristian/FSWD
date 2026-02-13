@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="/angular-1.8.2/angular.js"></script>
+    <script>
+      angular.element(document.getElementById("app1")).ready(function () {
+        angular.bootstrap(document.getElementById("app1"));
+      });
+    </script>
+  </head>
+  <body>
+    <center>
+      <h1>Designer</h1>
+      <div id="app1">
+        <table>
+          <tr>
+            <td>
+              <label for="">Phrase: </label>
+              <input type="text" ng-model="phrase" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>BG Color: </label>
+              <input type="color" ng-model="bgcolor" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Font Color: </label>
+              <input type="color" ng-model="ftcolor" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Font Size: </label>
+              <select ng-model="size">
+                <option value="10px">10px</option>
+                <option value="50px">50px</option>
+                <option value="100px">100px</option>
+                <option value="150px">150px</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Font Family: </label>
+              <select ng-model="fam">
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Arial">Arial</option>
+                <option value="Lucida Console">Lucida Console</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Font Style: </label>
+              <input type="checkbox" ng-model="bold" />Bold &nbsp;
+              <input type="checkbox" ng-model="underline" />Underline &nbsp;
+              <input type="checkbox" ng-model="striker" />Strike &nbsp;
+            </td>
+          </tr>
+        </table>
+        <hr>
+        <p
+          ng-bind="phrase"
+          style="color: {{ftcolor}};
+          background-color: {{bgcolor}};
+          font-size: {{size}};
+          font-family: {{fam}};
+          font-weight: {{bold ? 'bold' : 'normal'}};
+          text-decoration: {{underline && striker ? 'underline line-through' : (underline ? 'underline' : (striker ? 'line-through' : 'none'))}};"
+        ></p>
+      </div>
+    </center>
+  </body>
+</html>
