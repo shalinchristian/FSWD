@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="angular-1.8.2/angular.js"></script>
+    <script src="module/Controller.js"></script>
+</head>
+<body ng-app="SubApp">
+    <div ng-controller="SubCont">
+        <h2>Subject List: </h2>
+        <ul>
+            <li ng-repeat="subject in subjects">{{subject}}</li>
+        </ul>
+        <h2>Subject Search By Index </h2>
+        <input type="search" ng-model="index" placeholder="Enter index number">
+        <hr>
+        <h3>Result: {{subjects[index-1]}}</h3>
+    </div>
+</body>
+</html>

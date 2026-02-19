@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="angular-1.8.2/angular.js"></script>
+    <script src="module/Controller2.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body ng-app="cur">
+    <div class="text-blue-500 bg-blue-100 p-4" ng-controller="curController">
+    <h1 class="my-5">Currency Converter</h1>
+
+    <select ng-model="p1" class="border p-1 mb-2">
+        <option value="USD">USD</option>
+        <option value="INR">INR</option>
+        <option value="AUD">AUD</option>
+    </select>
+
+    <input type="number"
+           ng-model="amount"
+           placeholder="Enter amount in {{p1}}"
+           class="border p-1 mb-2">
+
+    <p>Convert to : </p>
+
+    <select ng-model="p2" class="border p-1 mb-2">
+        <option value="USD">USD</option>
+        <option value="INR">INR</option>
+        <option value="AUD">AUD</option>
+    </select>
+
+    <input type="number"
+           ng-model="amount"
+           placeholder="Enter amount in {{p2}}"
+           class="border p-1 my-3">
+
+    <p ng-bind="res" class="text-blue-800 font-bold text-lg"></p>
+</div>
+
+    
+</body>
+</html>

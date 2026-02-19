@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular App</title>
+     <script src="/angular-1.8.2/angular.js"></script>
+     <script src="/module/myController.js"></script>
+</head>
+<body ng-app="subjectApp">
+
+<div ng-controller="CurrencyController">
+
+    <h2>Currency Converter</h2>
+
+    <label>Enter Amount:</label>
+    <input type="number" ng-model="amount">
+    <br><br>
+
+    <label>From:</label>
+    <select ng-model="fromCurrency">
+        <option ng-repeat="currency in currencies" value="{{currency}}">
+            {{currency}}
+        </option>
+    </select>
+
+    <br><br>
+
+    <label>To:</label>
+    <select ng-model="toCurrency">
+        <option ng-repeat="currency in currencies" value="{{currency}}">
+            {{currency}}
+        </option>
+    </select>
+
+    <br><br>
+
+    <button ng-click="convert()">Convert</button>
+
+    <h3>Converted Amount: {{result}}</h3>
+
+</div>
+
+</body>
+
+</html>

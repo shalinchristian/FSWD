@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular App</title>
+     <script src="/angular-1.8.2/angular.js"></script>
+     <script src="/module/myController.js"></script>
+</head>
+<body ng-app="subjectApp">
+   <div ng-controller="SubjectController">
+    <h2>Subject List</h2>
+
+    <ol>
+        <li ng-repeat="subject in subjects track by $index">
+          {{subject}}
+        </li>
+    </ol>
+
+    <hr>
+
+    <h3>Search Subject by Index</h3>
+
+    <input type="search" ng-model="code" placeholder="Enter index number">
+
+    <h1>Your code :{{code}}</h1>
+    <h1>Your subject :{{subjects[code-1]}}</h1>
+    
+   </div>
+</body>
+</html>

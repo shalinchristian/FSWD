@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular App</title>
+     <script src="/angular-1.8.2/angular.js"></script>
+     <script src="/module/myController.js"></script>
+</head>
+<body ng-app="subjectApp">
+   <div ng-controller="displayEmployee">
+   
+    <label>Search by Employee ID: </label>
+    <select ng-model="selectedEmpID">
+        <option value="">All Employees</option>
+        <option ng-repeat="emp in employee" value="{{emp.EmpID}}">
+            {{emp.EmpID}}
+        </option>
+    </select>
+
+    <br><br>
+
+
+    <table border="1">
+    <tr>
+        <th>Photo</th>
+        <th>EmpID</th>
+        <th>EmpName</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Contact</th>
+    </tr>
+    <tr ng-repeat="emp in employee | filter:{EmpID:selectedEmpID}">
+        <td>
+            <img ng-src="{{emp.photo}}" alt="{{emp.EmpName}}" width="60" height="60" style="border-radius:50%;">
+        </td>
+        <td>{{emp.EmpID}}</td>
+        <td>{{emp.EmpName}}</td>
+        <td>{{emp.Department}}</td>
+        <td>{{emp.salary}}</td>
+        <td>{{emp.Contact}}</td>
+    </tr>
+</table>
+    
+   </div>
+</body>
+</html>
