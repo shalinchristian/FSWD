@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task App</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="taskModule.js"></script>
+</head>
+
+<body ng-app="taskApp" ng-controller="taskCtrl" style="background-color: bisque;">
+<center>
+
+<h1 style="background-color:black;color:white;text-align:center">Task Details</h1>
+
+<table border="3">
+    <tr>
+        <td>Task ID</td>
+        <td>Task Name</td>
+        <td>Status</td>
+        <td>Edit / Delete</td>
+    </tr>
+
+    <tr ng-repeat="item in task track by $index">
+        <td>{{item.taskID}}</td>
+        <td>{{item.taskName}}</td>
+        <td>{{item.status}}</td>
+        <td>
+            <button ng-click="deleteTask(item.taskID)">Delete</button>
+            <button ng-click="edit(item)">Edit</button>
+        </td>
+    </tr>
+</table>
+
+<form ng-submit="addNewTask(newTask)">
+    <h1 style="background-color:black;color:white;text-align:center">Add Task</h1>
+
+    <table>
+        <tr>
+            <td>Task ID :</td>
+            <td><input type="text" ng-model="newTask.taskID"></td>
+        </tr>
+
+        <tr>
+            <td>Task Name :</td>
+            <td><input type="text" ng-model="newTask.taskName"></td>
+        </tr>
+
+        <tr>
+            <td>Task Status :</td>
+            <td>
+                <input type="radio" ng-model="newTask.status" value="Started"> Started <br>
+                <input type="radio" ng-model="newTask.status" value="In Progress"> In Progress <br>
+                <input type="radio" ng-model="newTask.status" value="Completed"> Completed
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <button type="submit" ng-disabled="editStat">Add New Task</button>
+                <button type="button" ng-disabled="!editStat" ng-click="updateTask(newTask)">Update Task</button>
+            </td>
+        </tr>
+    </table>
+
+    <h1 style="background-color:yellow;color:red">Message : {{msg}}</h1>
+</form>
+
+</center>
+</body>
+</html>

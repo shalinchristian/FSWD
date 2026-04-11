@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="shopApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="ShopController">
+
+  <h2>Product Billing System</h2>
+
+  <table border="1">
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+
+    <tr ng-repeat="p in products">
+      <td>{{p.name}}</td>
+      <td>{{p.price}}</td>
+      <td>
+        <input type="number" ng-model="p.qty" min="0">
+      </td>
+      <td>{{p.price * (p.qty || 0)}}</td>
+    </tr>
+  </table>
+
+  <h3>Total Bill: {{getTotal()}}</h3>
+
+</body>
+
+<script>
+  var app = angular.module("shopApp", []);
+
+  // Controller
+  app.controller("ShopController", function($scope) {
+    
+    // Model (Product Data)
+    $scope.products = [
+      {name: "Laptop", price: 50000, qty: 0},
+      {name: "Mobile", price: 20000, qty: 0},
+      {name: "Tablet", price: 30000, qty: 0},
+      {name: "Headphones", price: 2000, qty: 0}
+    ];
+
+    // Calculate Total Bill
+    $scope.getTotal = function() {
+      var total = 0;
+      angular.forEach($scope.products, function(p) {
+        total += p.price * (p.qty || 0);
+      });
+      return total;
+    };
+
+  });
+</script>
+
+</html>
