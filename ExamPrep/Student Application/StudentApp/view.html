@@ -1,50 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Student Management</title>
+
     <script src="angular.min.js"></script>
     <script src="StudentModule.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@1.9.6/dist/tailwind.min.css">
+
+    <style>
+        /* Reusable styles */
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-field {
+            width: 100%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .btn-blue {
+            background: #3b82f6;
+        }
+
+        .btn-blue:hover {
+            background: #2563eb;
+        }
+
+        .btn-red {
+            background: #ef4444;
+        }
+
+        .btn-red:hover {
+            background: #dc2626;
+        }
+
+        .btn-white {
+            background: white;
+            color: black;
+        }
+
+        .btn-white:hover {
+            background: #e5e7eb;
+        }
+    </style>
 </head>
 
-<body ng-app="StudentApp" ng-controller="studentCtrl1">
-    <center>
-        <h1>Student Management System</h1>
-        <h2>Student Data</h2>
-        <table border="1" cellpadding="10px">
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Course</th>
-                <th>Action</th>
-            </tr>
-            <tr ng-repeat="s in students track by $index">
-                <td>{{s.id}}</td>
-                <td>{{s.name}}</td>
-                <td>{{s.course}}</td>
-                <td>
-                    <button ng-click="deleteStudent(s.id)">Delete</button>
-                    <button ng-click="editStudent(s)">Edit</button>
-                </td>
-            </tr>
-        </table>
-        <hr>
-        <h2>Add Student</h2>
-        <form ng-submit="addStudent()">
-            <input type="text" placeholder="ID" ng-model="newStudent.id" required><br><br>
+<body ng-app="StudentApp" ng-controller="studentCtrl1" class="bg-blue-700 font-sans">
 
-            <input type="text" placeholder="Name" ng-model="newStudent.name" required><br><br>
+    <!-- NAVBAR -->
+    <div class="bg-white shadow">
+        <div class="container flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Student Management</h1>
 
-            <input type="text" placeholder="Course" ng-model="newStudent.course" required><br><br>
+            <nav class="flex gap-6 text-lg">
+                <a href="#students-section" class="hover:text-blue-500">Students</a>
+                <a href="#add-students" class="hover:text-blue-500">Add Student</a>
+                <a href="#dashboard" class="hover:text-blue-500">Dashboard</a>
+            </nav>
+        </div>
+    </div>
 
-            <button type="submit" ng-disabled="isEdit">Add Student</button>
-            <button type="button" ng-disabled="!isEdit" ng-click="updateStudent()">Update Student</button>
-        </form>
+    <!-- STUDENTS SECTION -->
+    <div id="students-section" class="container mt-10">
+        <h2 class="text-3xl text-white font-bold mb-4">Student Data</h2>
 
-        <h3>{{msg}}</h3>
-    </center>
+        <div class="card overflow-x-auto">
+            <table class="w-full border">
+                <tr class="bg-gray-200">
+                    <th class="border p-2">Id</th>
+                    <th class="border p-2">Name</th>
+                    <th class="border p-2">Course</th>
+                    <th class="border p-2">Action</th>
+                </tr>
+
+                <tr ng-repeat="s in students track by $index" class="hover:bg-gray-100 transition">
+                    <td class="border p-2">{{s.id}}</td>
+                    <td class="border p-2">{{s.name}}</td>
+                    <td class="border p-2">{{s.course}}</td>
+                    <td class="border p-2 space-x-2">
+                        <button class="btn btn-red" ng-click="deleteStudent(s.id)">Delete</button>
+                        <button class="btn btn-blue" ng-click="editStudent(s)">Edit</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ADD STUDENT -->
+    <div id="add-students" class="container mt-10">
+        <h2 class="text-3xl text-white font-bold mb-4">Add Student</h2>
+
+        <div class="card">
+            <form ng-submit="addStudent()">
+
+                <input type="text" placeholder="ID" ng-model="newStudent.id" class="input-field" required>
+
+                <input type="text" placeholder="Name" ng-model="newStudent.name" class="input-field" required>
+
+                <input type="text" placeholder="Course" ng-model="newStudent.course" class="input-field" required>
+
+                <div class="flex gap-4 mt-2">
+                    <button type="submit" class="btn btn-blue" ng-disabled="isEdit">
+                        Add Student
+                    </button>
+
+                    <button type="button" class="btn btn-red" ng-disabled="!isEdit"
+                        ng-click="updateStudent()">
+                        Update Student
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- MESSAGE -->
+    <div class="container mt-6 text-center text-white text-lg">
+        {{msg}}
+    </div>
+
 </body>
 
 </html>
