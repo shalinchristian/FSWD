@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="StudentApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="angular.js"></script>
+    <script src="module.js"></script>
+</head>
+
+<body ng-controller="StudentCtrl">
+    <h2>Student List</h2>
+
+    <h3>Add Student</h3>
+
+    <input type="number" placeholder="Id" ng-model="newStudent.id" required><br><br>
+    <input type="text" placeholder="Name" ng-model="newStudent.name" required><br><br>
+    <input type="text" placeholder="Course" ng-model="newStudent.course" required><br><br>
+    <input type="number" placeholder="Marks" ng-model="newStudent.marks" required><br><br>
+
+    <button ng-click="addStudent()" ng-disabled="editMode">Add Student</button>
+    <button ng-click="updateStudent()" ng-disabled="!editMode">Update Student</button>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Marks</th>
+        </tr>
+
+        <tr ng-repeat="s in students">
+            <td>{{s.id}}</td>
+            <td>{{s.name}}</td>
+            <td>{{s.course}}</td>
+            <td>{{s.marks}}</td>
+            <td>
+                <button ng-click="editStudent(s)">Edit</button>
+                <button ng-click="deleteStudent(s.id)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
